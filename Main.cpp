@@ -39,6 +39,7 @@ void producer(std::string file_path)
 	{
 		while (std::getline(File,num))
 		{
+			
 			std::this_thread::sleep_for(PRODUCER_SLEEP_TIME); // producer's run time for pushing one number to the buffer 
 			std::cout << "######## -> " << "Producer pushed number -> " << std::stoi(num) << " to buffer." << std::endl;
 			SharedMembers::buffer.push(std::stoi(num));
@@ -74,7 +75,6 @@ void consumer()
 			SharedMembers::MySem.acquire();
 			if (CONSUMERS_COUNTS - SharedMembers::buffer.size() >= 0 && CONSUMERS_COUNTS - SharedMembers::buffer.size() <= CONSUMERS_COUNTS)
 			{
-				std::atomic<std::ostream> A();
 				std::cout << "******** -> " << CONSUMERS_COUNTS - SharedMembers::buffer.size() << "  Consumers waiting for work" << std::endl;
 			}
 			
